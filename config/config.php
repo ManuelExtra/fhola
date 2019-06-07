@@ -17,6 +17,10 @@ $dir = array(
 $base_url_local = '/fhola/';
 $base_url = NULL;
 
+// alternative base urls
+$alt_base_url_local = NULL;
+$alt_base_url = NULL;
+
 // define root dir
 $root_dir_local = 'fhola';
 $root_dir = NULL;
@@ -56,6 +60,8 @@ define("DIR", $dir);
 if($remote == TRUE){
     // base url local env
     define("BASE_URL", $base_url_local);
+    // alt base url local env
+    define("ALT_BASE_URL", $alt_base_url_local);
     // root dir local env
     define("ROOT_DIR", $root_dir_local);
 }
@@ -66,12 +72,16 @@ else{
     if($local_remote == TRUE){
         // base url local env
         define("BASE_URL", $base_url_local);
+        // alt base url local env
+        define("ALT_BASE_URL", $alt_base_url_local);
         // root dir local env
         define("ROOT_DIR", $root_dir_local);
     }
     else{
         // base url online env
-        define("BASE_URL", $base_url); 
+        define("BASE_URL", $base_url);
+        // alt base url production env
+        define("ALT_BASE_URL", $alt_base_url);
         // root dir online env
         define("ROOT_DIR", $root_dir);      
     }

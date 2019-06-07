@@ -39,7 +39,7 @@ class db_helper{
                 $countpaged;
 
             $select = inst("select","db");
-            $total_rows = $select->countRows($tablename, $where, $inner_column_append);
+            $total_rows = $select->countRows($tablename, $where, $inner_column_append,$column);
             if($total_rows > 0){
                 $append_link = (isset($_GET['page'])) ? '&page='.$_GET['page'] : '';
                 $total_pages = ceil($total_rows/$items_per_page);

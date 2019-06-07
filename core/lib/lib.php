@@ -31,8 +31,23 @@ function class_loader($path){
     
     // check if class exists
     if(file_exists("$path/$class_name.php")){
+          if(!isset($error404)){
+            // load header script
+            if(LOADER_OPT['header_script']){
+                $header = LOADER_OPT['header'];
+                // check if file exists
+                if(!file_exists("$path/$header.php")){
+                    throw new Exception("header script class not found");
+                }
+                
+                include_once "controller/".$header.".php";  
+
+                $header_script = new $header;
+                $header_script->index();
+            }   
+        }
         // load requested class
-        load("controller/$class_name.php");
+        load("$path/$class_name.php");
         // instantiate class
         $obj = new $class_name;
         
@@ -164,8 +179,8 @@ function class_loader($path){
             $method_name = "index";
         }
         if($method_name != 'index'){
-            $obj->$method_name();
             $obj->index();
+            $obj->$method_name();
         }
         else{
             $obj->index();

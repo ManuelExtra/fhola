@@ -3,16 +3,16 @@
 $iparray = array("127.0.0.1", "::1");
 
 // local testing
-$lcl_db_host = '';
-$lcl_db_name = '';
-$lcl_db_username = '';
-$lcl_db_password = '';
+$lcl_db_host = NULL;
+$lcl_db_name = NULL;
+$lcl_db_username = NULL;
+$lcl_db_password = NULL;
     
 // online
-$db_host = '';
-$db_name = '';
-$db_username = '';
-$db_password = '';
+$db_host = NULL;
+$db_name = NULL;
+$db_username = NULL;
+$db_password = NULL;
 
 // db connection
 if(in_array($_SERVER['REMOTE_ADDR'], $iparray)){

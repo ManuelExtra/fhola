@@ -51,6 +51,15 @@ class fh_ctrl{
         }
     }
     
+    protected function update_sess($sess_name,$value,$key=NULL){
+        if($key !== NULL){
+            $_SESSION[$sess_name][$key] = $value;
+        }
+        else{
+            $_SESSION[$sess_name] = $value;  
+        }
+    }
+    
     protected function user_session($sess_value){
         $_SESSION[USER_SESSION] = $sess_value;      
     }
@@ -78,11 +87,17 @@ class fh_ctrl{
         if(isset($_POST["$name"])){
             return $_POST["$name"];
         }
+        else{
+            return FALSE;
+        }
     }
     
     protected function get($name){
         if(isset($_GET["$name"])){
             return $_GET["$name"];
+        }
+        else{
+            return FALSE;
         }
     }
     

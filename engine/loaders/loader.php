@@ -44,7 +44,7 @@ class loader extends url_helper{
             $header = LOADER_OPT['header'];
         }
         
-        if($header !== FALSE){
+        if($header !== FALSE){        
             include_once "templates/".$header.".php";   
         }
     

@@ -847,12 +847,22 @@ function brief($text, $return){
     }
 }
 
-function base_url($path = NULL){
-    if($path !== NULL){
-        print BASE_URL."$path";
+function base_url($path = NULL, $alt_path = NULL){
+    if(!empty($alt_path)){
+        if(!empty(ALT_BASE_URL)){
+            print ALT_BASE_URL."$alt_path";   
+        }
+        else{
+            print 'ALT_BASE_URL is NULL';
+        }
     }
     else{
-        print BASE_URL;
+        if($path !== NULL){
+            print BASE_URL."$path";
+        }
+        else{
+            print BASE_URL;
+        }   
     }
 }
 

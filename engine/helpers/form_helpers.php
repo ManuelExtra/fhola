@@ -3,72 +3,67 @@
 class form_helpers{
     // file_upload method
     public function file_upload($name, $file_type, $validate = TRUE, $file_size = NULL){
-        if(isset($_FILES[$name]['tmp_name'])){
-            if(!empty($_FILES[$name]['tmp_name'])){
-                    // check file field is empty
-                    if($validate == TRUE){
-                        if(empty($_FILES[$name]['name'])){
-                            throw new Exception("Upload field is empty");
-                        }   
-                    }
+        // check file field is empty
+        if($validate == TRUE){
+            if(empty($_FILES[$name]['name'])){
+                throw new Exception("Upload field is empty");
+            }   
+        }
+        
+        if(!empty($_FILES[$name]['tmp_name'])){
+            $file_tmp_name_m = $_FILES[$name]['tmp_name'];
+            $file_name_m = $_FILES[$name]['name'];
+            $file_size_m = $_FILES[$name]['size'];
 
-                    $file_tmp_name_m = $_FILES[$name]['tmp_name'];
-                    $file_name_m = $_FILES[$name]['name'];
-                    $file_size_m = $_FILES[$name]['size'];
-
-                    // check for multiple allowed extension
-                    if(strpos($file_type, ",") !== FALSE){
-                        $allowed_ext = explode(",", str_replace(" ", NULL, $file_type));   
-                    }
-                    else{
-                        $allowed_ext = array($file_type);
-                    }
-                    // get file extension
-                    $ext = pathinfo($file_name_m, PATHINFO_EXTENSION);
-                    if(!in_array($ext, $allowed_ext)){
-                        throw new Exception("Unsupported file type");
-                    }
-                    // check file size
-                    else if($file_size != NULL){
-                        // check if file size has 2 values
-                        if(strpos($file_size, ",") !== FALSE){
-                            $file_size = explode(",", $file_size);
-                            $max_size = $file_size[0];
-                            $min_size = $file_size[1];
-
-                            // validate for max size
-                            if($file_size_m > $max_size*1000000){
-                                throw new Exception("Maximum file size is $max_size");
-                            }
-                            // validate for min size
-                            else if($file_size_m < $min_size*1000000){
-                                throw new Exception("Minimum file size is $min_size");
-                            }
-                        }
-                        else{
-                            // validate for max size
-                            if($file_size_m > $file_size*1000000){
-                                if(is_float($file_size)){
-                                    $file_size = (($file_size*1000000)/1000)."KB";
-                                }
-                                else{
-                                    $file_size = $file_size."MB";
-                                }
-                                throw new Exception("Maximum file size is $file_size");
-                            }
-                        }
-                    }
-
-                    return array(
-                    "tmp_name" => $file_tmp_name_m,
-                    "name" => $file_name_m,
-                    "size" => $file_size_m,
-                    "ext" => $ext
-                    );
+            // check for multiple allowed extension
+            if(strpos($file_type, ",") !== FALSE){
+                $allowed_ext = explode(",", str_replace(" ", NULL, $file_type));   
             }
             else{
-                return FALSE;
-            }   
+                $allowed_ext = array($file_type);
+            }
+            // get file extension
+            $ext = pathinfo($file_name_m, PATHINFO_EXTENSION);
+            if(!in_array($ext, $allowed_ext)){
+                throw new Exception("Unsupported file type");
+            }
+            // check file size
+            else if($file_size != NULL){
+                // check if file size has 2 values
+                if(strpos($file_size, ",") !== FALSE){
+                    $file_size = explode(",", $file_size);
+                    $max_size = $file_size[0];
+                    $min_size = $file_size[1];
+
+                    // validate for max size
+                    if($file_size_m > $max_size*1000000){
+                        throw new Exception("Maximum file size is $max_size");
+                    }
+                    // validate for min size
+                    else if($file_size_m < $min_size*1000000){
+                        throw new Exception("Minimum file size is $min_size");
+                    }
+                }
+                else{
+                    // validate for max size
+                    if($file_size_m > $file_size*1000000){
+                        if(is_float($file_size)){
+                            $file_size = (($file_size*1000000)/1000)."KB";
+                        }
+                        else{
+                            $file_size = $file_size."MB";
+                        }
+                        throw new Exception("Maximum file size is $file_size");
+                    }
+                }
+            }
+
+            return array(
+            "tmp_name" => $file_tmp_name_m,
+            "name" => $file_name_m,
+            "size" => $file_size_m,
+            "ext" => $ext
+            );   
         }
         else{
             return FALSE;

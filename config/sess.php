@@ -2,44 +2,53 @@
 // GOD IS LIGHT
 
 // altar array elements to project elements
+
+// if header_script key is TRUE fhola calls the class of the header for the user role
+// if header_script is instatiated, header class must be created.
 $user_type = array(
                 "default" => array(
                             // always set default "dir" to NULL unless you know what you're doing
                             "dir" => NULL,
                             "landing" => NULL,
                             "header" => "header",
-                            "footer" => "footer"
+                            "footer" => "footer",
+                            "header_script" => FALSE
                             ),
                 "1" => array(
-                            "dir" => "",
-                            "landing" => "",
-                            "header" => "",
-                            "footer" => ""
+                            "dir" => NULL,
+                            "landing" => NULL,
+                            "header" => NULL,
+                            "footer" => NULL,
+                            "header_script" => FALSE
                             ),
                 "2" => array(
-                            "dir" => "",
-                            "landing" => "",
-                            "header" => "",
-                            "footer" => ""
+                            "dir" => NULL,
+                            "landing" => NULL,
+                            "header" => NULL,
+                            "footer" => NULL,
+                            "header_script" => FALSE
                             ),
                 "3" => array(
-                            "dir" => "",
-                            "landing" => "",
-                            "header" => "",
-                            "footer" => ""
+                            "dir" => NULL,
+                            "landing" => NULL,
+                            "header" => NULL,
+                            "footer" => NULL,
+                            "header_script" => FALSE
                             ),
     
                 "4" => array(
                             "dir" => NULL,
                             "landing" => NULL,
                             "header" => NULL,
-                            "footer" => NULL
+                            "footer" => NULL,
+                            "header_script" => FALSE
                             ),
                 "5" => array(
                             "dir" => NULL,
                             "landing" => NULL,
                             "header" => NULL,
-                            "footer" => NULL
+                            "footer" => NULL,
+                            "header_script" => FALSE
                             ),
             );
 
